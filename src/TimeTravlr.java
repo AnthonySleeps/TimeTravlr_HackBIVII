@@ -14,12 +14,18 @@ import javax.swing.JButton;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.util.Random;
+
 public class TimeTravlr {
 	private ArrayList<TimeImage> imageList = new ArrayList<TimeImage>();
-	
+	private Random rand = new Random();
+	private TimeImage randImage;
 	
 	public TimeTravlr(ArrayList<TimeImage> imageFiles) {
-		imageList.add(new TimeImage("i2jojai", 1920));
+		imageList.add(new TimeImage("images.zip/", 1920));
 		
 		drawFrame();
 	}
@@ -32,12 +38,12 @@ public class TimeTravlr {
 	
 	public void drawFrame() {
 		JFrame frame = new JFrame();
-		
-		JButton startButton = new JButton("Start");
+		JButton startButton = new JButton("Get Image");
        startButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               Timer timer = new Timer(30000, new ActionListener() {
+        	   randImage = imageList.get(rand.nextInt(imageList.size()));
+               /*Timer timer = new Timer(30000, new ActionListener() {
                	int time = 30;
                    @Override
                    	
@@ -51,7 +57,7 @@ public class TimeTravlr {
                       
                    }
                });
-               timer.start();
+               timer.start();*/
            }
        });
 		
@@ -68,15 +74,32 @@ public class TimeTravlr {
 		panel.add(startButton);
 		frame.add(panel, BorderLayout.PAGE_START);
 // empty here		System.out.println(line.getInputQueue());
-		frame.add(new GamePanel());
+		frame.add(new GamePanel(randImage));
 		frame.setVisible(true);
 		
 		
 	}
 }
 class GamePanel extends JComponent {
-	public GamePanel() {
+	
+	private String fileName;
+	private TimeImage currentImage;
+	private BufferedImage pic;
+	
+	public GamePanel(TimeImage i) {
+		currentImage = i;
+		fileName = i.getFileName();
+		try {
+			pic = ImageIO.read(new File(fileName));
+		} catch (IOException e) {
+			//add functionality for files that are not found later
+		}
 		
+		
+	}
+	
+	public void drawCurrentImage(Graphics g) {
+		g.drawImage(pic, 0, 20, null);
 	}
 }
 
