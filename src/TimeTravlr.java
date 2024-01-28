@@ -1,18 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
@@ -21,6 +19,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.Random;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class TimeTravlr {
 	private ArrayList<TimeImage> imageList = new ArrayList<TimeImage>();
@@ -93,7 +93,7 @@ public class TimeTravlr {
 		frame.setName("TimeTravlr!");
 		//ProductionLine clonedLine = line.clone();
 //works here		System.out.println(line.getInputQueue());
-		frame.setSize(800,1200);
+		frame.setSize(1200,900);
 // empty here		System.out.println(line.getInputQueue());
 		frame.setBackground(Color.ORANGE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,7 +101,26 @@ public class TimeTravlr {
 		JPanel panel = new JPanel();
 		panel.add(startButton);
 		frame.add(panel, BorderLayout.PAGE_START);
-// empty here		System.out.println(line.getInputQueue());
+		
+		JPanel panel2 = new JPanel();
+        JTextField textField = new JTextField();
+        textField.setText("");
+        textField.setBounds(50, 50, 500, 80); // Set the position and size of the text field
+        panel2.add(textField);
+        frame.add(panel2, BorderLayout.PAGE_END);
+        
+        JPanel panel3 = new JPanel();
+        JTextArea textField2 = new JTextArea();
+        textField2.setEditable(false);
+        textField2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
+        textField2.setText("Welcome to TimeTravlr.\n An Image based game based off of GeoGuesser. \n Assist out time travelers in their \nDeLorean and find out what \n year they're in based on the image. \n Guess any year and see how far you were!");
+        textField.setBounds(0, 0, 300, 900);
+        panel3.add(textField2);
+        frame.add(panel3, BorderLayout.LINE_END);
+        
+        
+        
+        
 		frame.add(gamePanel);
 		frame.setVisible(true);
 		
@@ -190,8 +209,8 @@ class GamePanel extends JComponent {
 	
 	public void drawCurrentImage(Graphics g) {
 		
-		pic = scale2w(pic,(double)(350/(double)pic.getWidth()));
-		pic = scale2h(pic, (double)(350/(double)pic.getHeight()));
+		pic = scale2w(pic,(double)(700/(double)pic.getWidth()));
+		pic = scale2h(pic, (double)(450/(double)pic.getHeight()));
 		g.drawImage(pic, 25, 20, null);
 			
 		}
