@@ -5,11 +5,13 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,6 +29,7 @@ public class TimeTravlr {
 	private Random rand = new Random();
 	private TimeImage randImage;
 	private GamePanel gamePanel;
+	private String tempText = "Enter your first guess \n (use negative numbers for BC)";
 	 
 	
 	public TimeTravlr() {
@@ -93,7 +96,7 @@ public class TimeTravlr {
 		frame.setName("TimeTravlr!");
 		//ProductionLine clonedLine = line.clone();
 //works here		System.out.println(line.getInputQueue());
-		frame.setSize(1200,900);
+		frame.setSize(1400,900);
 // empty here		System.out.println(line.getInputQueue());
 		frame.setBackground(Color.ORANGE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,25 +106,66 @@ public class TimeTravlr {
 		frame.add(panel, BorderLayout.PAGE_START);
 		
 		JPanel panel2 = new JPanel();
-        JTextField textField = new JTextField();
-        textField.setText("");
-        textField.setBounds(50, 50, 500, 80); // Set the position and size of the text field
-        panel2.add(textField);
+        JTextField guessField = new JTextField(60);
+        guessField.setText("");
+        guessField.setFont( new Font("Sans_Serif", Font.PLAIN, 24));
+     //   guessField.setBounds(0, 0, 500, 80); // Set the position and size of the text field
+        panel2.add(guessField);
         frame.add(panel2, BorderLayout.PAGE_END);
         
         JPanel panel3 = new JPanel();
         JTextArea textField2 = new JTextArea();
         textField2.setEditable(false);
-        textField2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
+        textField2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         textField2.setText("Welcome to TimeTravlr.\n An Image based game based off of GeoGuesser. \n Assist out time travelers in their \nDeLorean and find out what \n year they're in based on the image. \n Guess any year and see how far you were!");
-        textField.setBounds(0, 0, 300, 900);
+        guessField.setBounds(0, 0, 300, 900);
         panel3.add(textField2);
         frame.add(panel3, BorderLayout.LINE_END);
         
+        JPanel panel4 = new JPanel();
+        JTextArea textField3 = new JTextArea();
+        textField3.setEditable(false);
+        textField3.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+        textField3.setText(tempText);
+        guessField.setBounds(0, 0, 300, 900);
+        panel4.add(textField3);
+        frame.add(panel4, BorderLayout.LINE_START);
         
+        JPanel buttonPanel = new JPanel();
+        JButton enterButton = new JButton("Guess!");
+        enterButton.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+        	   String answer = guessField.getText();
+        	   try {
+        		  int intAnswer = Integer.parseInt(answer);
+        		  int difference = intAnswer - randImage.getTime();
+        		  if (difference < 0)
+        			  difference = difference *-1;
+        		  
+        		  if(difference == 0) {
+        			  textField3.setText("Correct! \n This picture is from " + randImage.getTime());
+        		  } else {
+        			  textField3.setText("Wrong Time! \nThis Picture is from" + randImage.getTime() + " \nyou were about " + difference + " years off.");
+        		  }
+        		  
+        	   } catch (NumberFormatException n) {
+        		   tempText = "Invalid Guess Format";
+        	   }
+
+           }
+       });
+        buttonPanel.setBackground(Color.RED);
+        buttonPanel.add(enterButton);
+        buttonPanel.setMaximumSize(new Dimension(50,20));
         
-        
-		frame.add(gamePanel);
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
+         mainPanel.add(gamePanel);
+        mainPanel.add(buttonPanel);
+      
+		frame.add(mainPanel);
+     //   frame.add(mainPanel, BorderLayout.CENTER);
 		frame.setVisible(true);
 		
 		
