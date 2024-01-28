@@ -43,21 +43,7 @@ public class TimeTravlr {
            @Override
            public void actionPerformed(ActionEvent e) {
         	   randImage = imageList.get(rand.nextInt(imageList.size()));
-               /*Timer timer = new Timer(30000, new ActionListener() {
-               	int time = 30;
-                   @Override
-                   	
-                   public void actionPerformed(ActionEvent e) {
-                   	
-                       for (int x = time; x >= 0; x--) {
-                       	time --;
-                           frame.repaint();
-                       }
-//                        System.out.println("frame is repainted");
-                      
-                   }
-               });
-               timer.start();*/
+
            }
        });
 		
