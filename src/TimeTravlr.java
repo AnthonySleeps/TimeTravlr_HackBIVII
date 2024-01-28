@@ -1,4 +1,4 @@
-import java.util.ArrayList
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,23 +14,23 @@ import javax.swing.JButton;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class TimeTravelr {
-	private ArrayList<ImageCache> imageList = new ArrayList<ImageCache>();
+public class TimeTravlr {
+	private ArrayList<TimeImage> imageList = new ArrayList<TimeImage>();
 	
 	
-	public TimeTravelr(ArrayList<ImageCache> imageFiles) {
+	public TimeTravlr(ArrayList<TimeImage> imageFiles) {
 		imageList.add(new TimeImage("i2jojai", 1920));
 		
 		drawFrame();
 	}
 	
-	public TimeTravelr() {
+	public TimeTravlr() {
 		
 		drawFrame();
 	}
 	
 	
-	public void drawFrame(int n) {
+	public void drawFrame() {
 		JFrame frame = new JFrame();
 		
 		JButton startButton = new JButton("Start");
@@ -43,7 +43,7 @@ public class TimeTravelr {
                    	
                    public void actionPerformed(ActionEvent e) {
                    	
-                       for (x = time; x >= 0; x--) {
+                       for (int x = time; x >= 0; x--) {
                        	time --;
                            frame.repaint();
                        }
@@ -59,7 +59,7 @@ public class TimeTravelr {
 		frame.setName("TimeTravlr!");
 		//ProductionLine clonedLine = line.clone();
 //works here		System.out.println(line.getInputQueue());
-		frame.setSize(400,600);
+		frame.setSize(800,1200);
 // empty here		System.out.println(line.getInputQueue());
 		frame.setBackground(Color.ORANGE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
