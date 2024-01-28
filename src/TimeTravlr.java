@@ -130,7 +130,7 @@ class GamePanel extends JComponent {
 			pic = ImageIO.read(new File(fileName));
 		} catch (IOException e) {
 			//add functionality for files that are not found later
-			resetCurrentImage();
+			resetCurrentImage(new TimeImage("error.jpg",0000));
 			System.out.println("Cant find image file");
 			
 			
