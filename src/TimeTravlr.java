@@ -69,6 +69,9 @@ public class TimeTravlr {
 		imageList.add(new TimeImage("images/wrightbrothers.jpg", 1903));
 		imageList.add(new TimeImage("images/ww1.jpg",1914));
 		imageList.add(new TimeImage("images/ww2.jpg",1939));
+		imageList.add(new TimeImage("images/AlbertEinstein.jpg",1951));
+		imageList.add(new TimeImage("FrenchRevolution.jpg",1787));
+		imageList.add(new TimeImage("Boxing.jpg",1965));
 		
 		randImage = imageList.get(rand.nextInt(imageList.size()));
 
