@@ -150,6 +150,9 @@ public class TimeTravlr {
         			  textField3.setText("Correct! \n This picture is from " + randImage.getTime());
         		  } else {
         			  textField3.setText("Wrong Time! \nThis Picture is from" + randImage.getTime() + " \nyou were about " + difference + " years off.");
+               	   randImage = imageList.get(rand.nextInt(imageList.size()));
+            	   gamePanel.resetCurrentImage(randImage);
+            	   frame.repaint();
         		  }
         		  
         	   } catch (NumberFormatException n) {
