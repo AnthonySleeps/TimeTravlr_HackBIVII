@@ -66,6 +66,7 @@ public class TimeTravlr {
 		imageList.add(new TimeImage("images/wrightbrothers.jpg", 1903));
 		imageList.add(new TimeImage("images/ww1.jpg",1914));
 		imageList.add(new TimeImage("images/ww2.jpg",1939));
+		
 		randImage = imageList.get(rand.nextInt(imageList.size()));
 
 		gamePanel = new GamePanel(randImage);
@@ -154,8 +155,8 @@ class GamePanel extends JComponent {
 	    // Create a new image of the proper size
 	    int w2 = (int) (w * scale);
 
-	    BufferedImage after = new BufferedImage(w2, before.getWidth(), BufferedImage.TYPE_INT_ARGB);
-	    AffineTransform scaleInstance = AffineTransform.getScaleInstance(scale, scale);
+	    BufferedImage after = new BufferedImage(w2, before.getHeight(), BufferedImage.TYPE_INT_ARGB);
+	    AffineTransform scaleInstance = AffineTransform.getScaleInstance(scale, 1);
 	    AffineTransformOp scaleOp 
 	        = new AffineTransformOp(scaleInstance, AffineTransformOp.TYPE_BILINEAR);
 
@@ -173,8 +174,8 @@ class GamePanel extends JComponent {
 	    // Create a new image of the proper size
 
 	    int h2 = (int) (h * scale);
-	    BufferedImage after = new BufferedImage(before.getHeight(), h2, BufferedImage.TYPE_INT_ARGB);
-	    AffineTransform scaleInstance = AffineTransform.getScaleInstance(scale, scale);
+	    BufferedImage after = new BufferedImage(before.getWidth(), h2, BufferedImage.TYPE_INT_ARGB);
+	    AffineTransform scaleInstance = AffineTransform.getScaleInstance(1, scale);
 	    AffineTransformOp scaleOp 
 	        = new AffineTransformOp(scaleInstance, AffineTransformOp.TYPE_BILINEAR);
 
@@ -189,8 +190,8 @@ class GamePanel extends JComponent {
 	
 	public void drawCurrentImage(Graphics g) {
 		
-		pic = scale2w(pic,1/((double)pic.getWidth()/500));
-		pic = scale2h(pic, 1/((double)pic.getHeight()/500));
+		pic = scale2w(pic,(double)(350/(double)pic.getWidth()));
+		pic = scale2h(pic, (double)(350/(double)pic.getHeight()));
 		g.drawImage(pic, 25, 20, null);
 			
 		}
