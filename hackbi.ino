@@ -4,7 +4,7 @@ int LED1 = 1;
 void setup() {
   // put your setup code here, to run once:
 pinMode(LED, OUTPUT);
-
+pinMode(LED1, OUTPUT);
 
 volatile long last = 0;
 volatile bool turnOff = false;
@@ -38,16 +38,16 @@ void loop() {
  
     {
        digitalWrite(LED, LOW); //turn off led
-    } 
+    }   delay(5000);
     digitalWrite(LED1, HIGH);
-     
+     delay(5000);
      
       
 
   //if ("0");
 
     digitalWrite(LED, HIGH);
-     
-  
-       
+     delay(5000);
+   digitalWrite(LED1, LOW);
+       delay(5000);
 }
